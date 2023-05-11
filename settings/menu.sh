@@ -1,0 +1,1 @@
+python3 MenuTracker/demo.py --host localhost --face
