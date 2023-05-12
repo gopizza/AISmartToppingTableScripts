@@ -5,6 +5,11 @@
 # docker cp settings/face.sh aistt:/aistt/AISmartToppingTable/Face/run.sh
 # docker cp settings/vat.sh aistt:/aistt/AISmartToppingTable/Vat/run.sh
 
+for e in "ls -ltrh /dev/video*"
+do
+    echo $e
+done
+
 if [ -e "/dev/video*" ] ; then
     echo 'test1'
 else
