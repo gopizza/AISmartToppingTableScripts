@@ -6,7 +6,7 @@
 # docker cp settings/vat.sh aistt:/aistt/AISmartToppingTable/Vat/run.sh
 
 if [ -e "/dev/video0" ] ; then
-    echo 'test2'
+    echo 'test1'
 else
     echo 'test2'
 fi
