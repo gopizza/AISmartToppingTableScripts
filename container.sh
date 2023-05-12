@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# 컨테이너 띄우기전에 실행
-# xhost local:root
 # 권한부여
 # --privileged 
 
