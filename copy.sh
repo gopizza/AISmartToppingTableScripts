@@ -16,7 +16,11 @@
 #     echo 'test2'
 # fi
 
-for I in /sys/class/video4linux/*;
+for I in /dev/video*;
 do
-    cat $I/name;
+    if [ -e $I ] ; then
+        echo 'test1'
+    else
+        echo 'test2'
+    fi
 done
