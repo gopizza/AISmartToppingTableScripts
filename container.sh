@@ -8,7 +8,7 @@ CMD="docker run -it --name aistt --gpus all --net host --ipc host"
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 
 
-for I in $VIDEOPATH
+for entry in $VIDEOPATH
 do
     if [ -e $I ] ; then
         CMD+=" --device $entry:$entry"
