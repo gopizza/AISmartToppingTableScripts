@@ -10,7 +10,7 @@ VIDEOPATH="/dev/video*"
 
 for entry in $VIDEOPATH
 do
-    if [ -e $I ] ; then
+    if [ -e $entry ] ; then
         CMD+=" --device $entry:$entry"
     else
         echo "Not detected camera"
