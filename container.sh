@@ -10,9 +10,13 @@ CMD="docker run -it --name aistt --gpus all --net host --ipc host"
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 
 
-for entry in $VIDEOPATH
+for I in $VIDEOPATH
 do
-    CMD+=" --device $entry:$entry"
+    if [ -e $I ] ; then
+        CMD+=" --device $entry:$entry"
+    else
+        echo "Not detected camera"
+    fi
 done
 
 CMD+=" --device-cgroup-rule='c 189:* rmw' \
@@ -22,7 +26,9 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -v /dev/bus/usb:/dev/bus/usb \
 aistt:1.0 /bin/bash"
-echo xhost local:root\ $CMD
 
-# docker exec aistt sh /aistt/run.sh
-# docker exec aistt sh /aistt/camera.sh
+echo "xhost local:root"
+echo $CMD
+
+echo "docker exec aistt sh /aistt/camera.sh"
+echo "docker exec aistt sh /aistt/run.sh"
