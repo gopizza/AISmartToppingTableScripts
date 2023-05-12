@@ -5,7 +5,7 @@
 # 권한부여
 # --privileged 
 
-CMD="docker run -it  --name aistt --gpus all --net host --ipc host"
+CMD="docker run -it --name aistt --gpus all --net host --ipc host"
 
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 
@@ -22,7 +22,7 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -v /dev/bus/usb:/dev/bus/usb \
 aistt:1.0 /bin/bash"
-echo $CMD
+echo xhost local:root\ $CMD
 
 # docker exec aistt sh /aistt/run.sh
 # docker exec aistt sh /aistt/camera.sh
