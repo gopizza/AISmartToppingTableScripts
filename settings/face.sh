@@ -1,1 +1,1 @@
-python3 Face/demo.py
+python3 Face/run.py
