@@ -39,3 +39,5 @@ echo "docker run --name node_redis -p 6379:6379 redis"
 
 echo "docker exec aistt sh /aistt/camera.sh"
 echo "docker exec aistt sh /aistt/run.sh"
+
+echo "gnome-terminal -- bash -c "sh \"$HOME/project/autostart.sh\"; exec bash -i""
