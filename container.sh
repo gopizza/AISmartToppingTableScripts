@@ -1,5 +1,13 @@
 #!/bin/sh
 
+docker image pull futureplanning/aistt:1.0
+docker image pull redis
+
+docker tag futureplanning/aistt:1.0 aistt:1.0
+
+echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
+sudo udevadm control --reload-rules && sudo udevadm trigger
+
 # 권한부여
 # --privileged 
 
@@ -27,6 +35,7 @@ aistt:1.0 /bin/bash"
 
 echo "xhost local:root"
 echo $CMD
+echo "docker run --name node_redis -p 6379:6379 redis"
 
 echo "docker exec aistt sh /aistt/camera.sh"
 echo "docker exec aistt sh /aistt/run.sh"
