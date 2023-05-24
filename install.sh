@@ -11,10 +11,8 @@ sudo apt-get update && sudo apt-get install -y nvidia-docker2
 sudo systemctl restart docker
 
 sudo usermod -a -G docker $USER
-docker login
 
 sudo apt -y update
 sudo apt -y upgrade
 cp autostart.sh ..
 sudo reboot
-

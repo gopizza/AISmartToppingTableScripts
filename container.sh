@@ -1,5 +1,6 @@
 #!/bin/sh
 
+docker login
 docker image pull futureplanning/aistt:1.0
 docker image pull redis
 
