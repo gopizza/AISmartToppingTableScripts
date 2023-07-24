@@ -1,4 +1,5 @@
 #!/bin/sh
+HOST='localhost'
 
 docker login
 docker image pull futureplanning/aistt:manage
@@ -13,7 +14,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 # 권한부여
 # --privileged 
 
-CMD="docker run -it --name aistt --gpus all -e HOST=192.168.10.11 --net host --ipc host"
+CMD="docker run -it --name aistt --gpus all -e HOST=$HOST --net host --ipc host"
 
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 
