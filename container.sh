@@ -39,7 +39,8 @@ echo "xhost local:root"
 echo $CMD
 echo "docker run --name node_redis -d -p 6379:6379 redis"
 # echo "docker run --name node_mongodb -v ~/data:/data/db -d -p 27017:27017 mongo"
-# echo "docker run --name node_mongodb -d -p 27017:27017 mongo"
+echo "docker run --name node_mongodb -d -p 27017:27017 mongo"
+echo "docker run --name node_nginx -d nginx"
 
 echo "docker exec aistt sh /aistt/camera.sh"
 echo "docker exec aistt sh /aistt/run.sh"
