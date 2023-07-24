@@ -5,7 +5,7 @@ docker image pull futureplanning/aistt:manage
 docker image pull redis
 docker image pull nginx
 
-#docker tag futureplanning/aistt:1.0 aistt:1.0
+docker tag futureplanning/aistt:manage aistt:manage
 
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
