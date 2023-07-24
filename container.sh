@@ -34,7 +34,7 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /etc/localtime:/etc/localtime:ro \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -v /dev/bus/usb:/dev/bus/usb \
-aistt:1.0 /bin/bash"
+aistt:manage /bin/bash"
 
 echo "xhost local:root"
 echo $CMD
