@@ -1,5 +1,6 @@
 #!/bin/sh
 HOST='localhost'
+GUIDE_FRONT_BRANCH='store/singapore'
 
 docker login
 docker image pull futureplanning/aistt:manage
@@ -16,7 +17,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 # 권한부여
 # --privileged 
 
-CMD="docker run -it --name manage --gpus all -e HOST=$HOST --net host --ipc host"
+CMD="docker run -it --name manage --gpus all -e HOST=$HOST --net host --ipc host -d"
 
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 
@@ -36,6 +37,7 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /etc/localtime:/etc/localtime:ro \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -v /dev/bus/usb:/dev/bus/usb \
+-v /var/run/wpa_supplicant:/var/run/wpa_supplicant
 aistt:manage /bin/bash"
 
 echo "xhost local:root"
@@ -44,7 +46,7 @@ echo "docker run --name node_redis -d -p 6379:6379 redis"
 # echo "docker run --name node_mongodb -v ~/data:/data/db -d -p 27017:27017 mongo"
 echo "docker run --name node_mongodb -d -p 27017:27017 mongo"
 echo "docker run --name node_nginx -d nginx"
-echo "docker run --name guide --gpus all -p 3000:3000 -p 5000:5000 -d aistt:guide"
+echo "docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -p 3000:3000 -p 5000:5000 -d aistt:guide"
 
 echo "docker exec aistt sh /aistt/camera.sh"
 echo "docker exec aistt sh /aistt/run.sh"
