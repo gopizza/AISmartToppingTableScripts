@@ -63,8 +63,8 @@ docker run --name node_nginx -d nginx
 docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -p 3000:3000 -p 5000:5000 -d aistt:guide
 
 
-VAR1 ="$(cat $HOME/.profile | tail -1)"
-VAR2 ="$(echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"")"
+VAR1 = "$(cat $HOME/.profile | tail -1)"
+VAR2 = "$(echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"")"
 
 if [ "$VAR1" = "$VAR2" ]; then
     echo 'Skip add to profile'
