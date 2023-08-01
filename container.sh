@@ -1,5 +1,5 @@
 #!/bin/sh
-HOST='localhost'
+STORE_INDEX='1'
 #GUIDE_FRONT_BRANCH='store/singapore'
 GUIDE_FRONT_BRANCH='store/case-A'
 
@@ -18,7 +18,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 # 권한부여
 # --privileged 
 
-CMD="docker run -it --privileged --name manage --gpus all -e HOST=$HOST --net host --ipc host -d"
+CMD="docker run -it --privileged --name manage --gpus all -e STORE_INDEX=$STORE_INDEX --net host --ipc host -d"
 
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 

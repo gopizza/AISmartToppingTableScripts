@@ -1,5 +1,5 @@
 docker restart node_redis
-#docker restart node_mongodb
+docker restart node_mongodb
 docker restart node_nginx
 
 docker restart manage
