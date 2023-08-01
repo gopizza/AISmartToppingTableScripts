@@ -32,7 +32,7 @@ do
     fi
 done
 
-CMD+=" --device-cgroup-rule=\"c 189:* rmw\" \
+CMD+=" --device-cgroup-rule=\\"c 189:* rmw\\" \
 -e DISPLAY=unix$DISPLAY \
 -v /dev/snd:/dev/snd \
 -v /etc/localtime:/etc/localtime:ro \
