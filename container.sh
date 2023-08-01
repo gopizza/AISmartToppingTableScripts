@@ -2,6 +2,7 @@
 HOST='localhost'
 #GUIDE_FRONT_BRANCH='store/singapore'
 GUIDE_FRONT_BRANCH='store/caseA'
+DVICE_CGROUP_RULE='"c 189:* rmw"'
 
 docker login
 docker image pull futureplanning/aistt:manage
@@ -32,7 +33,7 @@ do
     fi
 done
 
-CMD+=" --device-cgroup-rule=\\"c 189:* rmw\\" \
+CMD+=" --device-cgroup-rule=$DVICE_CGROUP_RULE \
 -e DISPLAY=unix$DISPLAY \
 -v /dev/snd:/dev/snd \
 -v /etc/localtime:/etc/localtime:ro \
