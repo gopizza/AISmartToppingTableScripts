@@ -33,7 +33,7 @@ do
     fi
 done
 
-CMD+=" --device-cgroup-rule=$DVICE_CGROUP_RULE \
+CMD+=" --device-cgroup-rule="$DVICE_CGROUP_RULE" \
 -e DISPLAY=unix$DISPLAY \
 -v /dev/snd:/dev/snd \
 -v /etc/localtime:/etc/localtime:ro \
