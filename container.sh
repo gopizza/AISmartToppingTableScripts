@@ -66,7 +66,7 @@ docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -p 
 VAR1 ="$(cat $HOME/.profile | tail -1)"
 VAR2 ="$(echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"")"
 
-if [ "$VAL1" = "$VAL2" ]; then
+if [ "$VAR1" = "$VAR2" ]; then
     echo 'Skip add to profile'
 else
     echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"" >> $HOME/.profile
