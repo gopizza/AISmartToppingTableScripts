@@ -2,7 +2,6 @@
 HOST='localhost'
 #GUIDE_FRONT_BRANCH='store/singapore'
 GUIDE_FRONT_BRANCH='store/caseA'
-DVICE_CGROUP_RULE='\"c 189:* rmw\"'
 
 docker login
 docker image pull futureplanning/aistt:manage
@@ -33,7 +32,7 @@ do
     fi
 done
 
-CMD+=" --device-cgroup-rule="$DVICE_CGROUP_RULE" \
+CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -e DISPLAY=unix$DISPLAY \
 -v /dev/snd:/dev/snd \
 -v /etc/localtime:/etc/localtime:ro \
@@ -57,7 +56,7 @@ aistt:manage /bin/bash"
 # echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\""
 
 docker rm -f $(docker ps -aq)
-$CMD
+eval $CMD
 docker run --name node_redis -d -p 6379:6379 redis
 docker run --name node_mongodb -d -p 27017:27017 mongo
 docker run --name node_nginx -d nginx
