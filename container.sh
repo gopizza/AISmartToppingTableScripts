@@ -2,7 +2,7 @@
 HOST='localhost'
 #GUIDE_FRONT_BRANCH='store/singapore'
 GUIDE_FRONT_BRANCH='store/caseA'
-DVICE_CGROUP_RULE='"c 189:* rmw"'
+DVICE_CGROUP_RULE='c 189:* rmw'
 
 docker login
 docker image pull futureplanning/aistt:manage
