@@ -7,6 +7,7 @@ docker image pull futureplanning/aistt:manage
 docker image pull futureplanning/aistt:guide
 docker image pull redis
 docker image pull nginx
+docker image pull mongo
 
 docker tag futureplanning/aistt:manage aistt:manage
 docker tag futureplanning/aistt:guide aistt:guide
@@ -40,15 +41,25 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /var/run/wpa_supplicant:/var/run/wpa_supplicant
 aistt:manage /bin/bash"
 
-echo "xhost local:root"
-echo $CMD
-echo "docker run --name node_redis -d -p 6379:6379 redis"
-# echo "docker run --name node_mongodb -v ~/data:/data/db -d -p 27017:27017 mongo"
-echo "docker run --name node_mongodb -d -p 27017:27017 mongo"
-echo "docker run --name node_nginx -d nginx"
-echo "docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -p 3000:3000 -p 5000:5000 -d aistt:guide"
+# echo "xhost local:root"
+# echo $CMD
+# echo "docker run --name node_redis -d -p 6379:6379 redis"
+# # echo "docker run --name node_mongodb -v ~/data:/data/db -d -p 27017:27017 mongo"
+# echo "docker run --name node_mongodb -d -p 27017:27017 mongo"
+# echo "docker run --name node_nginx -d nginx"
+# echo "docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -p 3000:3000 -p 5000:5000 -d aistt:guide"
 
-echo "docker exec aistt sh /aistt/camera.sh"
-echo "docker exec aistt sh /aistt/run.sh"
+# echo "docker exec aistt sh /aistt/camera.sh"
+# echo "docker exec aistt sh /aistt/run.sh"
 
-echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\""
+# echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\""
+
+xhost local:root
+$CMD
+docker run --name node_redis -d -p 6379:6379 redis
+docker run --name node_mongodb -d -p 27017:27017 mongo
+docker run --name node_nginx -d nginx
+
+docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -p 3000:3000 -p 5000:5000 -d aistt:guide
+
+gnome-terminal -- bash -c "sh \"$HOME/project/autostart.sh\"; exec bash -i"
