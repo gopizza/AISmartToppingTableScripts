@@ -62,4 +62,4 @@ docker run --name node_nginx -d nginx
 
 docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -p 3000:3000 -p 5000:5000 -d aistt:guide
 
-gnome-terminal -- bash -c "sh \"$HOME/project/autostart.sh\"; exec bash -i"
+echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"" | sudo tee /etc/udev/rules.d/80-movidius.rules
