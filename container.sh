@@ -56,7 +56,7 @@ aistt:manage /bin/bash"
 # echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\""
 
 docker rm -f $(docker ps -aq)
-CMD
+$CMD
 docker run --name node_redis -d -p 6379:6379 redis
 docker run --name node_mongodb -d -p 27017:27017 mongo
 docker run --name node_nginx -d nginx
