@@ -1,7 +1,7 @@
 #!/bin/sh
 HOST='localhost'
 #GUIDE_FRONT_BRANCH='store/singapore'
-GUIDE_FRONT_BRANCH='store/caseA'
+GUIDE_FRONT_BRANCH='store/case-A'
 
 docker login
 docker image pull futureplanning/aistt:manage
