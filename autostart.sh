@@ -1,3 +1,7 @@
+PASSWORD=''
+
+echo $PASSWORD | sudo -S apt-get -y update && sudo -S apt-get -y update
+
 docker restart node_redis
 docker restart node_mongodb
 docker restart node_nginx
