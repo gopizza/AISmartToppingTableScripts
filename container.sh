@@ -1,4 +1,5 @@
 #!/bin/sh
+HOST=''
 STORE_INDEX='1'
 #GUIDE_FRONT_BRANCH='store/singapore'
 GUIDE_FRONT_BRANCH='store/case-A'
@@ -18,7 +19,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 # 권한부여
 # --privileged 
 
-CMD="docker run -it --privileged --name manage --gpus all -e STORE_INDEX=$STORE_INDEX --net host --ipc host -d"
+CMD="docker run -it --privileged --name manage --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST --net host --ipc host -d"
 
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 
@@ -61,7 +62,7 @@ eval $CMD
 docker run --name node_redis -d -p 6379:6379 redis
 docker run --name node_mongodb -d -p 27017:27017 mongo
 docker run --name node_nginx -d nginx
-docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -p 3000:3000 -p 5000:5000 -d aistt:guide
+docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -e HOST=$HOST -p 3000:3000 -p 5000:5000 -d aistt:guide
 
 
 VAR1="$(cat $HOME/.profile | tail -1)"
