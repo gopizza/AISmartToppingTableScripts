@@ -62,7 +62,7 @@ eval $CMD
 docker run --name node_redis -d -p 6379:6379 redis
 docker run --name node_mongodb -d -p 27017:27017 mongo
 docker run --name node_nginx -d nginx
-docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -e HOST=$HOST -p 3000:3000 -p 5000:5000 -d aistt:guide
+docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -e HOST=$HOST -p 3000:3000 -p 5000:5000 --net host --ipc host -d aistt:guide
 
 
 VAR1="$(cat $HOME/.profile | tail -1)"
