@@ -6,12 +6,12 @@ GUIDE_FRONT_BRANCH='store/case-A'
 
 docker login
 docker image pull futureplanning/aistt:manage
-docker image pull futureplanning/aistt:guide
+# docker image pull futureplanning/aistt:guide
 docker image pull redis
 docker image pull nginx
 
 docker tag futureplanning/aistt:manage aistt:manage
-docker tag futureplanning/aistt:guide aistt:guide
+# docker tag futureplanning/aistt:guide aistt:guide
 
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
@@ -62,7 +62,9 @@ eval $CMD
 docker run --name node_redis -d -p 6379:6379 redis
 docker run --name node_mongodb -d -p 27017:27017 mongo
 docker run --name node_nginx -d nginx
-docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -e HOST=$HOST -p 3000:3000 -p 5000:5000 --net host --ipc host -d aistt:guide
+# docker run --name guide --gpus all -e GUIDE_FRONT_BRANCH=$GUIDE_FRONT_BRANCH -e HOST=$HOST -p 3000:3000 -p 5000:5000 --net host --ipc host -d aistt:guide
+
+bash guide.sh development
 
 
 VAR1="$(cat $HOME/.profile | tail -1)"
