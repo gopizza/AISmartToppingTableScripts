@@ -3,6 +3,8 @@
 GUIDE_FRONT_BRANCH=$1
 HOST=''
 
+docker image pull nginx
+
 docker image pull futureplanning/aistt:guide
 docker tag futureplanning/aistt:guide aistt:guide
 
