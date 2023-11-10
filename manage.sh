@@ -1,6 +1,6 @@
 #!/bin/sh
 HOST=''
-STORE_INDEX='1'
+STORE_INDEX=$1
 
 docker login
 docker image pull futureplanning/aistt:manage
