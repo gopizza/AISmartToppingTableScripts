@@ -51,12 +51,16 @@ aistt:manage /bin/bash"
 
 # echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\""
 
-docker rm -f $(docker ps -aq)
+# docker rm -f $(docker ps -aq)
+
+docker rm -f manage
+docker rm -f node_redis
+docker rm -f node_mongodb
+
 xhost local:root
 eval $CMD
 docker run --name node_redis -d -p 6379:6379 redis
 docker run --name node_mongodb -d -p 27017:27017 mongo
-docker run --name node_nginx -d nginx
 
 VAR1="$(cat $HOME/.profile | tail -1)"
 VAR2="$(echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"")"
