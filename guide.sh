@@ -23,6 +23,8 @@ elif [ "427" == "$2" ]; then
 elif [ "364" == "$2" ]; then
   # 교육장 + 1층 XGO
   STORE_CODE="f779f540"
+else
+  STORE_CODE=$2
 fi
 
 docker image pull nginx
