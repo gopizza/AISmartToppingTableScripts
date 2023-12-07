@@ -22,7 +22,7 @@ elif [ "redis" == $1 ]; then
         docker pull redis:latest
     elif [ "run" == $2 ]; then
         docker run --name node_redis -d -p 6379:6379 redis
-    if
+    fi
 else
     echo "Wrong argument or nothing!"
 fi
