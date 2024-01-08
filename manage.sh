@@ -3,10 +3,9 @@ HOST=''
 STORE_INDEX=$1
 
 docker login
-docker image pull futureplanning/aistt:manage
-docker image pull redis
+docker image pull futureplanning/aistt:aistt
 
-docker tag futureplanning/aistt:manage aistt:manage
+docker tag futureplanning/aistt:aistt aistt:aistt
 
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
@@ -14,7 +13,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 # 권한부여
 # --privileged 
 
-CMD="docker run -it --privileged --name manage --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST --net host --ipc host -d"
+CMD="docker run -it --name manage --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST --net host --ipc host -d"
 
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 
@@ -51,16 +50,16 @@ aistt:manage /bin/bash"
 
 # echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\""
 
-# docker rm -f $(docker ps -aq)
+# docker rm -f manage
+# docker rm -f node_redis
+# docker rm -f node_mongodb
 
-docker rm -f manage
-docker rm -f node_redis
-docker rm -f node_mongodb
+docker rm -f $(docker ps -aq)
 
 xhost local:root
 eval $CMD
-docker run --name node_redis -d -p 6379:6379 redis
-docker run --name node_mongodb -d -p 27017:27017 mongo
+# docker run --name node_redis -d -p 6379:6379 redis
+# docker run --name node_mongodb -d -p 27017:27017 mongo
 
 VAR1="$(cat $HOME/.profile | tail -1)"
 VAR2="$(echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"")"
