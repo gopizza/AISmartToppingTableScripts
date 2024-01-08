@@ -1,6 +1,7 @@
 #!/bin/sh
 HOST=''
-STORE_INDEX=$1
+# STORE_INDEX=$1
+STORE_INDEX='1'
 
 docker login
 docker image pull futureplanning/aistt:aistt
@@ -13,7 +14,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 # 권한부여
 # --privileged 
 
-CMD="docker run -it --name manage --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST --net host --ipc host -d"
+CMD="docker run -it --name aistt --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST --net host --ipc host -d"
 
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 
@@ -35,7 +36,7 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /dev/bus/usb:/dev/bus/usb \
 -v /var/run/dbus:/var/run/dbus \
 -v /var/run/NetworkManager:/var/run/NetworkManager \
-aistt:manage /bin/bash"
+aistt:aistt"
 
 # echo "xhost local:root"
 # echo $CMD
