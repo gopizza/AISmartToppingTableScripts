@@ -15,3 +15,6 @@ docker restart aistt
 docker logs --tail 20 -f aistt &
 # google-chrome-stable http://192.168.0.62:3000/customer-screen --new-window -incognito -start-fullscreen --password-store=basic &
 # google-chrome-stable http://192.168.0.62:3000/status --new-window -incognito -start-fullscreen --password-store=basic &
+
+# google-chrome-stable http://192.168.0.62:18001/customer-screen --new-window -incognito -start-fullscreen --password-store=basic &
+# google-chrome-stable http://192.168.0.62:18000/status --new-window -incognito -start-fullscreen --password-store=basic &
