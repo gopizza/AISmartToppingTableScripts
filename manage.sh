@@ -12,7 +12,7 @@ echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/ud
 sudo udevadm control --reload-rules && sudo udevadm trigger
 
 # 권한부여
-# --privileged 
+# --privileged
 
 CMD="docker run -it --name aistt --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST --net host --ipc host -d"
 
@@ -27,6 +27,8 @@ do
         echo "Not detected camera"
     fi
 done
+
+# -v /home/gopizza/Record:/aistt/AISmartToppingTable/Record/data
 
 CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -e DISPLAY=unix$DISPLAY \
