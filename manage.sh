@@ -13,8 +13,10 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 
 # 권한부여
 # --privileged
+ENV_PATH='/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/cuda-11.8/bin'
+LIB_PATH='/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-11.8/lib64:/aistt/TensorRT-8.5.2.2/lib'
 
-CMD="docker run -it --name aistt --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST --net host --ipc host -d"
+CMD="docker run -it --name aistt --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST -e PATH=$ENV_PATH -e LD_LIBRARY_PATH=$LIB_PATH --net host --ipc host -d"
 
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 
