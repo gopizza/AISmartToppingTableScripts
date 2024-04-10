@@ -37,6 +37,8 @@ def restart_app():
 
 
 if __name__ == "__main__":
+    # */10 * * * * /bin/python3 /home/gopizza/project/AISmartToppingTableScripts/check.py
+
     service_name = "teamviewerd"
 
     if not check_service_status(service_name):
