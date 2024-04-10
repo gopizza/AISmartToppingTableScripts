@@ -5,24 +5,20 @@ import subprocess
 
 from datetime import datetime
 
-PASSWORD = "rhvlwk1234"
-
 def message_print(message):
     nowDateTime = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
     print(f'[{nowDateTime}] {message}')
     
 def check_service_status(service_name):
     try:
-        cmd1 = subprocess.Popen(["echo", PASSWORD], stdout=subprocess.PIPE)
-        subprocess.run(["sudo", "-S", "systemctl", "is-active", "--quiet", service_name], stdin=cmd1.stdout, check=True)
+        subprocess.run(["systemctl", "is-active", "--quiet", service_name], check=True)
         return True
     except subprocess.CalledProcessError:
         return False
 
 def restart_service(service_name):
-    cmd1 = subprocess.Popen(["echo", PASSWORD], stdout=subprocess.PIPE)
-    subprocess.run(["sudo", "-S", "systemctl", "enable", service_name], stdin=cmd1.stdout, check=True)
-    subprocess.run(["sudo", "-S", "systemctl", "restart", service_name], stdin=cmd1.stdout, check=True)
+    subprocess.run(["sudo", "-S", "systemctl", "enable", service_name], check=True)
+    subprocess.run(["sudo", "-S", "systemctl", "restart", service_name], check=True)
     
 def check_app_status():
     try:
@@ -36,8 +32,8 @@ def check_app_status():
     except:
         return False
 
-# def restart_app():
-#     subprocess.call(["sh", f"{os.environ['HOME']}/project/autostart_without_browser.sh"])
+def restart_app():
+    subprocess.call(["sh", f"{os.environ['HOME']}/project/autostart_without_browser.sh"])
 
 
 if __name__ == "__main__":
