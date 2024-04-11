@@ -19,4 +19,4 @@ else
 fi
 echo
 
-/bin/python3 $PROJECT_DIRECTORY/check.py
+/bin/python3 $PROJECT_DIRECTORY/$PROJECT_NAME/check.py
