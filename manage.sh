@@ -4,9 +4,9 @@ STORE_INDEX=$1
 TAG=$2
 
 docker login
-docker image pull futureplanning/aistt:aistt
+docker image pull futureplanning/aistt:$TAG
 
-docker tag futureplanning/aistt:aistt aistt:aistt
+docker tag futureplanning/aistt:$TAG aistt:$TAG
 
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
@@ -40,7 +40,7 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /dev/bus/usb:/dev/bus/usb \
 -v /var/run/dbus:/var/run/dbus \
 -v /var/run/NetworkManager:/var/run/NetworkManager \
-aistt:aistt"
+aistt:$TAG"
 
 # echo "xhost local:root"
 # echo $CMD
