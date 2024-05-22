@@ -4,9 +4,9 @@ STORE_INDEX=$1
 TAG=$2
 
 docker login
-docker image pull futureplanning/aistt:$TAG
+docker image pull futureplanning/aistt:aistt
 
-docker tag futureplanning/aistt:$TAG aistt:$TAG
+docker tag futureplanning/aistt:aistt aistt:aistt
 
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
@@ -16,7 +16,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 ENV_PATH='/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/cuda-11.8/bin'
 LIB_PATH='/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-11.8/lib64:/aistt/TensorRT-8.5.2.2/lib'
 
-CMD="docker run -it --name aistt --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST -e PATH=$ENV_PATH -e LD_LIBRARY_PATH=$LIB_PATH --net host --ipc host -d"
+CMD="docker run -it --name $TAG --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST -e PATH=$ENV_PATH -e LD_LIBRARY_PATH=$LIB_PATH --net host --ipc host -d"
 
 # set here the path to the directory containing your videos
 VIDEOPATH="/dev/video*" 
@@ -40,7 +40,7 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /dev/bus/usb:/dev/bus/usb \
 -v /var/run/dbus:/var/run/dbus \
 -v /var/run/NetworkManager:/var/run/NetworkManager \
-aistt:$TAG"
+aistt:aistt"
 
 # echo "xhost local:root"
 # echo $CMD
