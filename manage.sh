@@ -60,7 +60,7 @@ aistt:$TAG"
 # docker rm -f node_redis
 # docker rm -f node_mongodb
 
-docker rm -f $(docker ps -aq)
+# docker rm -f $(docker ps -aq)
 
 xhost local:root
 eval $CMD
