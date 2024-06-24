@@ -18,17 +18,17 @@ LIB_PATH='/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-11.8/lib
 
 CMD="docker run -it --name $TAG --gpus all -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST -e PATH=$ENV_PATH -e LD_LIBRARY_PATH=$LIB_PATH --net host --ipc host -d -p 80:80"
 
-# set here the path to the directory containing your videos
-VIDEOPATH="/dev/video*" 
+# # set here the path to the directory containing your videos
+# VIDEOPATH="/dev/video*" 
 
-for entry in $VIDEOPATH
-do
-    if [ -e $entry ] ; then
-        CMD+=" --device $entry:$entry"
-    else
-        echo "Not detected camera"
-    fi
-done
+# for entry in $VIDEOPATH
+# do
+#     if [ -e $entry ] ; then
+#         CMD+=" --device $entry:$entry"
+#     else
+#         echo "Not detected camera"
+#     fi
+# done
 
 # -v /home/gopizza/Record:/aistt/AISmartToppingTable/Record/data
 
@@ -41,7 +41,7 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /var/run/dbus:/var/run/dbus \
 -v /var/run/NetworkManager:/var/run/NetworkManager \
 -v /home/gopizza/Record:/aistt/AISmartToppingTable/Record/data \
-aistt:$TAG"
+aistt:$TAG sleep infinity"
 
 # echo "xhost local:root"
 # echo $CMD

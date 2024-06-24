@@ -8,7 +8,7 @@ xhost local:root
 # docker restart node_nginx
 
 docker restart aistt
-# docker exec manage sh /aistt/run.sh
+docker exec aistt sh /aistt/AISmartToppingTable/run.sh
 
 # docker restart guide
 
