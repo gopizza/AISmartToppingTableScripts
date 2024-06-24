@@ -9,9 +9,8 @@ if [ ! -d "/home/gopizza/Record" ]; then
 fi
 
 docker login
-docker image pull futureplanning/aistt:$TAG
-
-docker tag futureplanning/aistt:$TAG aistt:$TAG
+docker image pull futureplanning/aistt:aistt
+# docker tag futureplanning/aistt:$TAG aistt:$TAG
 
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
@@ -46,7 +45,7 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /var/run/dbus:/var/run/dbus \
 -v /var/run/NetworkManager:/var/run/NetworkManager \
 -v /home/gopizza/Record:/aistt/AISmartToppingTable/Record/data \
-aistt:$TAG sleep infinity"
+futureplanning/aistt:aistt"
 
 # echo "xhost local:root"
 # echo $CMD
