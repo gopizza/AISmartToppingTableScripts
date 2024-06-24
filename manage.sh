@@ -3,6 +3,11 @@ HOST=''
 STORE_INDEX=$1
 TAG=$2
 
+# 디렉토리 존재 유무 확인
+if [ ! -d "/home/gopizza/Record" ]; then
+    mkdir "/home/gopizza/Record"
+fi
+
 docker login
 docker image pull futureplanning/aistt:$TAG
 
