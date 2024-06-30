@@ -44,7 +44,7 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /dev/bus/usb:/dev/bus/usb \
 -v /var/run/dbus:/var/run/dbus \
 -v /var/run/NetworkManager:/var/run/NetworkManager \
--v /home/gopizza/Record:/aistt/AISmartToppingTable/Record/data \
+-v /home/gopizza/Record:/aistt/AISmartToppingTable/record_data \
 futureplanning/aistt:aistt"
 
 # echo "xhost local:root"
