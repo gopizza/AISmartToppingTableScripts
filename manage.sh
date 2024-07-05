@@ -1,7 +1,7 @@
 #!/bin/sh
 HOST=''
-STORE_INDEX=$1
-TAG=$2
+STORE_INDEX='1'
+TAG='aistt'
 IMAGE='nvcr.io/nvidia/l4t-pytorch:r35.2.1-pth2.0-py3'
 
 # 디렉토리 존재 유무 확인
@@ -9,6 +9,7 @@ if [ ! -d "/home/gopizza/Record" ]; then
     mkdir "/home/gopizza/Record"
 fi
 
+docker login
 docker pull $IMAGE
 
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
