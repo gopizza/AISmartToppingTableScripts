@@ -3,11 +3,6 @@ STORE_INDEX=$1
 TAG=$2
 IMAGE=$3
 
-# 디렉토리 존재 유무 확인
-if [ ! -d "/home/gopizza/Record" ]; then
-    mkdir "/home/gopizza/Record"
-fi
-
 docker pull $IMAGE
 
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
@@ -22,7 +17,6 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -v /dev/bus/usb:/dev/bus/usb \
 -v /var/run/dbus:/var/run/dbus \
--v /var/run/NetworkManager:/var/run/NetworkManager \
 $IMAGE"
 
 xhost local:root
