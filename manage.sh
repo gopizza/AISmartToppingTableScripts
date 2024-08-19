@@ -1,5 +1,4 @@
 #!/bin/sh
-HOST=''
 STORE_INDEX=$1
 TAG=$2
 IMAGE=$3
@@ -14,7 +13,7 @@ docker pull $IMAGE
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
 
-CMD="docker run -it --runtime nvidia --name $TAG -e STORE_INDEX=$STORE_INDEX -e HOST=$HOST --net host --privileged --ipc host -d -p 80:80"
+CMD="docker run -it --runtime nvidia --name $TAG -e STORE_INDEX=$STORE_INDEX --net host --privileged --ipc host -d -p 80:80"
 
 CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -e DISPLAY=$DISPLAY \
@@ -24,7 +23,6 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /dev/bus/usb:/dev/bus/usb \
 -v /var/run/dbus:/var/run/dbus \
 -v /var/run/NetworkManager:/var/run/NetworkManager \
--v /home/gopizza/Record:/aistt/AISmartToppingTable/record_data \
 $IMAGE"
 
 xhost local:root
@@ -33,11 +31,11 @@ eval $CMD
 # docker run --name node_redis -d -p 6379:6379 redis
 # docker run --name node_mongodb -d -p 27017:27017 mongo
 
-VAR1="$(cat $HOME/.profile | tail -1)"
-VAR2="$(echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"")"
+# VAR1="$(cat $HOME/.profile | tail -1)"
+# VAR2="$(echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"")"
 
-if [ "$VAR1" = "$VAR2" ]; then
-    echo 'Skip add to profile'
-else
-    echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"" >> $HOME/.profile
-fi
+# if [ "$VAR1" = "$VAR2" ]; then
+#     echo 'Skip add to profile'
+# else
+#     echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"" >> $HOME/.profile
+# fi
