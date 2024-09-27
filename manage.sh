@@ -3,12 +3,12 @@ STORE_INDEX=$1
 TAG=$2
 IMAGE=$3
 
-docker pull $IMAGE
+docker pull $IMAGE:$TAG
 
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
 
-CMD="docker run -it --runtime nvidia --name $TAG -e STORE_INDEX=$STORE_INDEX --net host --privileged --ipc host -d -p 80:80"
+CMD="docker run -it --runtime nvidia --name $TAG -e STORE_INDEX=$STORE_INDEX -e PATH=/home/gopizza/library/cmake-3.30.2-linux-aarch64/bin:$PATH -e LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/gopizza/lib --net host --privileged --ipc host -d -p 80:80"
 
 CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -e DISPLAY=$DISPLAY \
@@ -17,7 +17,7 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -v /dev/bus/usb:/dev/bus/usb \
 -v /var/run/dbus:/var/run/dbus \
-$IMAGE"
+futureplanning/aistt:aistt3"
 
 xhost local:root
 eval $CMD
