@@ -4,6 +4,8 @@
 + git checkout jetson_dev
 + vim container.sh
 > STORE_INDEX='store_index'
+> STORE INDEX 확인 : <https://api.gopizza.kr/bo/v1/stores>
+> ctrl + F -> 매장 이름 검색 -> id = STORE_INDEX
 + ./container.sh
 + docker login
 + docker start aistt3
