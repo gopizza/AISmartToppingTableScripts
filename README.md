@@ -10,24 +10,31 @@
 > ctrl + F -> 매장 이름 검색 -> id = STORE_INDEX
 >
 > STORE_INDEX가 없을 시 업무 요청 ex) <https://www.wrike.com/workspace.htm?acc=5288081#/task-view?id=1519920194&pid=1437271030&cid=823474820>
-> 
-+ ./container.sh
 + docker login
 + + [error] permission denied while trying to connect to the Docker daemon socket
   > sudo usermod -aG docker $USER
   > 
   > sudo systemctl restart docker
++ ./container.sh
 + docker start aistt3
 + docker attach aistt3
-> cd /home/gopizza/aistt/AISmartToppingTableV3.0/pyLauncher
+> cd /home/gopizza/aistt/AISmartToppingTableV3.0
+>
+> git pull
+>
+> git checkout linux
+>
+> mkdir /home/gopizza/data/config
+> 
+> cd pyLauncher
 > 
 > vim .env
 > 
 > ssh gopizza@raspberryPI
 > 
-> cp config_.json config.json
+> cp config_.json /home/gopizza/data/config/config.json
 > 
-> vim config.json
+> vim /home/gopizza/data/config/config.json
 > 
 > > GoEngine/Store/StoreIndex
 > > 
