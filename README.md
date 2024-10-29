@@ -13,6 +13,10 @@
 > 
 + ./container.sh
 + docker login
++ + [error] permission denied while trying to connect to the Docker daemon socket
+  > sudo usermod -aG docker $USER
+  > 
+  > sudo systemctl restart docker
 + docker start aistt3
 + docker attach aistt3
 > cd /home/gopizza/aistt/AISmartToppingTableV3.0/pyLauncher
