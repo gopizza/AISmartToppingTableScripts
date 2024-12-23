@@ -45,7 +45,7 @@ def check_status():
         return False
 
 def restart_app():
-    subprocess.call(["sh", f"{os.environ['HOME']}/project/autostart_without_browser.sh"])
+    subprocess.call(["reboot"])
 
 
 if __name__ == "__main__":
