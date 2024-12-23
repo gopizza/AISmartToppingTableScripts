@@ -20,7 +20,7 @@ def restart_service(service_name):
     subprocess.run(["sudo", "-S", "systemctl", "enable", service_name], check=True)
     subprocess.run(["sudo", "-S", "systemctl", "restart", service_name], check=True)
     
-def check_app_status():
+def check_status():
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.connect(('pwnbit.kr', 443))
@@ -28,7 +28,19 @@ def check_app_status():
         
         response = requests.get(f"http://{host}:18000/app_status", timeout=3)
         response = response.json()
-        return response['app_status']
+        app_status = response['app_status']
+
+        response = requests.get(f"http://{host}:18000/cam_status", timeout=3)
+        response = response.json()
+        cam_status = response['cam1']
+
+        response = requests.get(f"http://{host}:18000/net_status", timeout=3)
+        response = response.json()
+        net_status = response['net_connected']
+
+        if (app_status + cam_status + net_status) != 3:
+            return False
+        return True
     except:
         return False
 
@@ -47,8 +59,8 @@ if __name__ == "__main__":
     else:
         message_print(f"Service '{service_name}' is running.")
         
-    # if not check_app_status():
-    #     message_print(f"Application is not running. Restarting...")
-    #     restart_app()
-    # else:
-    #     message_print("Application is running.")
+    if not check_status():
+        message_print(f"Application is not running. Restarting...")
+        restart_app()
+    else:
+        message_print("Application is running.")
