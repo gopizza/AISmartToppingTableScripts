@@ -5,31 +5,6 @@
 #docker restart aistt
 #docker exec aistt sh /aistt/AISmartToppingTable/run.sh
 
-if ping -c 1 -W 5 google.com 1>/dev/null 2>&1
-then
-    # connected to the internet
-    echo "$(date +%y-%m-%d_%T) System Power On" >> /home/gopizza/data/log/boot.log
-    echo "$(date +%y-%m-%d_%T) Internet is connected" >> /home/gopizza/data/log/boot.log
-else
-    # not connected to the internet
-    if [ -f "/home/gopizza/data/log/date.log" ]; then
-        echo "$FILE exists."
-        DATE="$(tail -n 1 $FILE)"
-    else
-        echo "$FILE Not exists." >> /home/gopizza/data/log/boot.log
-        DATE="$(date +%y-%m-%d_%T)"
-    fi
-    timedatectl set-ntp false
-    TEXTDATE="$(echo $DATE | cut -d "_" -f1) $(echo $DATE | cut -d "_" -f2)"
-    echo "$TEXTDATE System Power On" >> /home/gopizza/data/log/boot.log
-    echo "$TEXTDATE Internet is disconnected" >> /home/gopizza/data/log/boot.log
-    CMDDATE="$(echo $DATE | cut -d "_" -f1)$(echo $DATE | cut -d "_" -f2)"
-    CMD="timedatectl set-time $CMDDATE"
-    $CMD
-    timedatectl set-ntp true
-fi
-
-
 SHELL_NAME="aistt"
 SESSION_OK=$(screen -ls |grep $SHELL_NAME)
 echo Checking for $SESSION_OK

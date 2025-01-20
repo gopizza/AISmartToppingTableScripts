@@ -6,9 +6,10 @@ if ping -c 1 -W 5 google.com 1>/dev/null 2>&1
 then
     echo "$(date +%y-%m-%d_%T) Internet is connected" >> /home/gopizza/data/log/boot.log
     echo "$(date +%y-%m-%d_%T) System Power Off" >> /home/gopizza/data/log/boot.log
+    sleep 5
     sudo shutdown -r
 else
     echo "$(date +%y-%m-%d_%T) Internet is disconnected" >> /home/gopizza/data/log/boot.log
     echo "Start Program"
-    /usr/bin/sh /home/gopizza/aistt/AISmartToppingTableV3.0/autostart.sh
+    /usr/bin/sh /home/gopizza/aistt/AISmartToppingTableScripts/autostart.sh
 fi
