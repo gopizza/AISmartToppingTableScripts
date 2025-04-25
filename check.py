@@ -49,6 +49,8 @@ def restart_app():
 
 
 if __name__ == "__main__":
+    # sudo vim /etc/sudoers
+    # gopizza ALL=(ALL) NOPASSWD: /sbin/reboot
     # */10 * * * * /bin/bash /home/gopizza/project/AISmartToppingTableScripts/run.sh
 
     service_name = "teamviewerd"
