@@ -8,7 +8,7 @@ docker pull $IMAGE
 echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
 
-CMD="docker run -it --runtime nvidia --name $TAG -e STORE_INDEX=$STORE_INDEX --net host --ipc host -d"
+CMD="docker run -it --runtime nvidia --name $NAME -e STORE_INDEX=$STORE_INDEX --net host --ipc host -d"
 
 CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -e DISPLAY=$DISPLAY \
