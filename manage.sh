@@ -1,6 +1,6 @@
 #!/bin/sh
 STORE_INDEX=$1
-TAG=$2
+NAME=$2
 IMAGE=$3
 
 docker pull $IMAGE
@@ -21,6 +21,8 @@ $IMAGE"
 
 xhost local:root
 eval $CMD
+
+cp autostart.sh ../autustart.sh
 
 VAR1="$(cat $HOME/.profile | tail -1)"
 VAR2="$(echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"")"
