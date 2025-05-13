@@ -22,8 +22,6 @@ $IMAGE"
 xhost local:root
 eval $CMD
 
-cp autostart.sh ../autustart.sh
-
 VAR1="$(cat $HOME/.profile | tail -1)"
 VAR2="$(echo "gnome-terminal -- bash -c \"sh \\\"$HOME/project/autostart.sh\\\"; exec bash -i\"")"
 
