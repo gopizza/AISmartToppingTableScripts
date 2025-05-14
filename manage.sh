@@ -12,7 +12,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 
 # 권한부여
 # --privileged
-CMD="docker run -it --name $NAME --gpus all -e STORE_INDEX=$STORE_INDEX --e COUNTRY_CODE=$COUNTRY_CODE --net host --ipc host -d"
+CMD="docker run -it --name $NAME --gpus all -e STORE_INDEX=$STORE_INDEX -e COUNTRY_CODE=$COUNTRY_CODE --net host --ipc host -d"
 
 # # set here the path to the directory containing your videos
 # VIDEOPATH="/dev/video*" 
