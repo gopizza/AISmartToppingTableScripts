@@ -1,6 +1,5 @@
 #!/bin/bash
 STORE_INDEX='1'
-TAG='aistt'
+NAME='aistt'
 
-bash manage.sh $STORE_INDEX $TAG
-# bash guide.sh development $STORE_INDEX
+bash manage.sh $STORE_INDEX $NAME
