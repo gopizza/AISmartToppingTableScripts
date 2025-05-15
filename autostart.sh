@@ -4,7 +4,7 @@
 # xhost local:root
 
 docker restart aistt
-docker exec aistt sh /aistt/AISmartToppingTable/run.sh
+docker exec aistt sh /aistt/AISmartToppingTable/run.sh &
 
 # echo "Waiting for the server to start..."
 # until curl -s http://localhost:8080 > /dev/null; do
