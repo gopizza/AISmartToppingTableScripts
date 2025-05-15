@@ -1,16 +1,17 @@
 # PASSWORD=''
 # echo $PASSWORD | sudo -S DEBIAN_FRONTEND=noninteractive apt-get -y update && sudo -S DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 
-xhost local:root
-# docker restart node_redis
-# docker restart node_mongodb
-# docker restart node_nginx
+# xhost local:root
 
 docker restart aistt
 docker exec aistt sh /aistt/AISmartToppingTable/run.sh
 
-# docker restart guide
+# echo "Waiting for the server to start..."
+# until curl -s http://localhost:8080 > /dev/null; do
+#     sleep 1
+# done
 
+# docker restart guide
 # docker logs --tail 20 -f aistt &
 # google-chrome-stable http://192.168.0.62:3000/customer-screen --new-window -incognito -start-fullscreen --password-store=basic &
 # google-chrome-stable http://192.168.0.62:3000/status --new-window -incognito -start-fullscreen --password-store=basic &
