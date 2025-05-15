@@ -11,7 +11,7 @@ docker exec aistt sh /aistt/AISmartToppingTable/run.sh
 #     sleep 1
 # done
 
-# google-chrome-stable http://192.168.0.62:3000/customer-screen --new-window -incognito -start-fullscreen --password-store=basic &
+# google-chrome-stable http://localhost:8080 --new-window -incognito -start-fullscreen --password-store=basic &
 
 
 
