@@ -20,7 +20,6 @@ CMD+=" --device-cgroup-rule='c 189:* rmw' \
 -v /var/run/dbus:/var/run/dbus \
 $IMAGE"
 
-xhost local:root
 eval $CMD
 
 VAR1="$(cat $HOME/.profile | tail -1)"

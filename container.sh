@@ -1,8 +1,22 @@
 #!/bin/bash
-STORE_INDEX='1'
-NAME='aistt'
-#IMAGE='nvcr.io/nvidia/l4t-pytorch:r35.2.1-pth2.0-py3'
-IMAGE='futureplanning/aistt:jetson'
-COUNTRY_CODE='KR' # KR ID TH
 
-bash manage.sh $STORE_INDEX $NAME $IMAGE $COUNTRY_CODE
+# 기본값 설정
+DEFAULT_STORE_INDEX='1'
+DEFAULT_NAME='aistt'
+DEFAULT_IMAGE='futureplanning/aistt:jetson'
+DEFAULT_COUNTRY_CODE='KR'
+
+# 사용자 입력 받기 (기본값 제공)
+read -p "STORE_INDEX [${DEFAULT_STORE_INDEX}]: " STORE_INDEX
+read -p "NAME [${DEFAULT_NAME}]: " NAME
+read -p "IMAGE [${DEFAULT_IMAGE}]: " IMAGE
+read -p "COUNTRY_CODE [${DEFAULT_COUNTRY_CODE}]: " COUNTRY_CODE
+
+# 입력값이 비어있으면 기본값으로 설정
+STORE_INDEX=${STORE_INDEX:-$DEFAULT_STORE_INDEX}
+NAME=${NAME:-$DEFAULT_NAME}
+IMAGE=${IMAGE:-$DEFAULT_IMAGE}
+COUNTRY_CODE=${COUNTRY_CODE:-$DEFAULT_COUNTRY_CODE}
+
+# 실행
+bash manage.sh "$STORE_INDEX" "$NAME" "$IMAGE" "$COUNTRY_CODE"
